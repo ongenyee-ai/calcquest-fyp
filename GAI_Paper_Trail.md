@@ -28,3 +28,9 @@ Asked an AI assistant to draft the learning objectives document and the skill tr
 
 ### How I Used It
 I reviewed and adapted the drafts into `docs/learning_objectives.md` and `docs/skill_tree.md`. The pedagogical choices (chapter focus, level order, mechanics) remain my own and will be validated with my supervisor.
+
+   ## 11 September 2026 (Session 3)
+   ### Prompt / Assistance Used
+   Asked AI to fix grammar for my condensed chapter 1 , did the draft during hw0288 lesson.
+   ### How I Used It
+   I reviewed the condensed draft, verified all facts and citations [1]-[3], and committed it to the repository.
