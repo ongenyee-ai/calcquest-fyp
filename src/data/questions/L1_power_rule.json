@@ -1,0 +1,197 @@
+{
+  "schemaVersion": "1.0",
+  "node": "L1",
+  "nodeTitle": "First Steps: Power Rule",
+  "objective": "LO2",
+  "questions": [
+    {
+      "id": "L1-T1-001",
+      "tier": 1,
+      "type": "mcq",
+      "isMiniTest": false,
+      "prompt": "What is the derivative of x^3?",
+      "promptLatex": "\\frac{d}{dx}\\left(x^{3}\\right)",
+      "options": [
+        { "id": "a", "latex": "3x^{2}", "correct": true },
+        { "id": "b", "latex": "x^{2}", "correct": false, "diagnosis": "power-reduced-coefficient-dropped" },
+        { "id": "c", "latex": "3x^{3}", "correct": false, "diagnosis": "coefficient-applied-power-not-reduced" },
+        { "id": "d", "latex": "\\frac{x^{4}}{4}", "correct": false, "diagnosis": "integrated-instead-of-differentiated" }
+      ],
+      "fallbackHints": [
+        "The power rule changes both the coefficient and the exponent. Check whether you have done both.",
+        "For x^n, bring n down to the front and reduce the exponent by one.",
+        "Worked example on a different question: for x^5, bring the 5 down to get 5x, then reduce 5 to 4, giving 5x^4."
+      ]
+    },
+    {
+      "id": "L1-T1-002",
+      "tier": 1,
+      "type": "mcq",
+      "isMiniTest": false,
+      "prompt": "What is the derivative of 7?",
+      "promptLatex": "\\frac{d}{dx}\\left(7\\right)",
+      "options": [
+        { "id": "a", "latex": "0", "correct": true },
+        { "id": "b", "latex": "7", "correct": false, "diagnosis": "constant-unchanged" },
+        { "id": "c", "latex": "7x", "correct": false, "diagnosis": "integrated-instead-of-differentiated" },
+        { "id": "d", "latex": "1", "correct": false, "diagnosis": "confused-with-derivative-of-x" }
+      ],
+      "fallbackHints": [
+        "Think about what the graph of y = 7 looks like, and what its slope is.",
+        "A constant does not change as x changes, so its rate of change is fixed.",
+        "Worked example on a different question: y = 12 is a flat horizontal line, so its slope everywhere is 0."
+      ]
+    },
+    {
+      "id": "L1-T1-003",
+      "tier": 1,
+      "type": "mcq",
+      "isMiniTest": false,
+      "prompt": "What is the derivative of 5x?",
+      "promptLatex": "\\frac{d}{dx}\\left(5x\\right)",
+      "options": [
+        { "id": "a", "latex": "5", "correct": true },
+        { "id": "b", "latex": "5x", "correct": false, "diagnosis": "constant-unchanged" },
+        { "id": "c", "latex": "0", "correct": false, "diagnosis": "treated-whole-term-as-constant" },
+        { "id": "d", "latex": "\\frac{5x^{2}}{2}", "correct": false, "diagnosis": "integrated-instead-of-differentiated" }
+      ],
+      "fallbackHints": [
+        "Rewrite 5x as 5 times x to the power of 1, then apply the rule.",
+        "With n = 1, bringing the exponent down leaves x to the power of 0, which is 1.",
+        "Worked example on a different question: for 8x, write it as 8x^1; the derivative is 8 times 1 times x^0, which is 8."
+      ]
+    },
+    {
+      "id": "L1-T2-004",
+      "tier": 2,
+      "type": "mcq",
+      "isMiniTest": false,
+      "prompt": "What is the derivative of 4x^3?",
+      "promptLatex": "\\frac{d}{dx}\\left(4x^{3}\\right)",
+      "options": [
+        { "id": "a", "latex": "12x^{2}", "correct": true },
+        { "id": "b", "latex": "4x^{2}", "correct": false, "diagnosis": "exponent-not-multiplied-into-coefficient" },
+        { "id": "c", "latex": "3x^{2}", "correct": false, "diagnosis": "original-coefficient-dropped" },
+        { "id": "d", "latex": "12x^{3}", "correct": false, "diagnosis": "coefficient-applied-power-not-reduced" }
+      ],
+      "fallbackHints": [
+        "The number already in front does not disappear when you apply the power rule.",
+        "Multiply the existing coefficient by the exponent, then reduce the exponent by one.",
+        "Worked example on a different question: for 6x^4, multiply 6 by 4 to get 24, and reduce 4 to 3, giving 24x^3."
+      ]
+    },
+    {
+      "id": "L1-T2-005",
+      "tier": 2,
+      "type": "symbolic",
+      "isMiniTest": false,
+      "prompt": "Differentiate x^4 - 3x^2 + 6",
+      "promptLatex": "\\frac{d}{dx}\\left(x^{4} - 3x^{2} + 6\\right)",
+      "answer": { "latex": "4x^{3} - 6x", "expression": "4*x^3 - 6*x" },
+      "fallbackHints": [
+        "A sum or difference can be differentiated one term at a time.",
+        "Apply the power rule separately to each term, and remember what happens to the constant.",
+        "Worked example on a different question: for x^3 + 2x^2 - 5, differentiate each term to get 3x^2, then 4x, then 0."
+      ]
+    },
+    {
+      "id": "L1-T2-006",
+      "tier": 2,
+      "type": "mcq",
+      "isMiniTest": false,
+      "prompt": "What is the derivative of x^-2?",
+      "promptLatex": "\\frac{d}{dx}\\left(x^{-2}\\right)",
+      "options": [
+        { "id": "a", "latex": "-2x^{-3}", "correct": true },
+        { "id": "b", "latex": "-2x^{-1}", "correct": false, "diagnosis": "exponent-increased-not-decreased" },
+        { "id": "c", "latex": "2x^{-3}", "correct": false, "diagnosis": "sign-lost-on-negative-exponent" },
+        { "id": "d", "latex": "-2x^{3}", "correct": false, "diagnosis": "sign-of-exponent-dropped" }
+      ],
+      "fallbackHints": [
+        "The power rule works for negative exponents too, with no change to the procedure.",
+        "Reducing an exponent by one means going from -2 to -3, not to -1.",
+        "Worked example on a different question: for x^-5, bring down -5 and reduce the exponent to -6, giving -5x^-6."
+      ]
+    },
+    {
+      "id": "L1-T3-007",
+      "tier": 3,
+      "type": "symbolic",
+      "isMiniTest": false,
+      "prompt": "Differentiate the square root of x",
+      "promptLatex": "\\frac{d}{dx}\\left(\\sqrt{x}\\right)",
+      "answer": { "latex": "\\frac{1}{2\\sqrt{x}}", "expression": "1/(2*sqrt(x))" },
+      "fallbackHints": [
+        "A root can be written as a fractional power before you differentiate.",
+        "Rewrite the square root as x to the power of one half, then apply the power rule.",
+        "Worked example on a different question: the cube root of x is x^(1/3), so its derivative is (1/3)x^(-2/3)."
+      ]
+    },
+    {
+      "id": "L1-T3-008",
+      "tier": 3,
+      "type": "mcq",
+      "isMiniTest": false,
+      "prompt": "What is the derivative of 1/x^3?",
+      "promptLatex": "\\frac{d}{dx}\\left(\\frac{1}{x^{3}}\\right)",
+      "options": [
+        { "id": "a", "latex": "-\\frac{3}{x^{4}}", "correct": true },
+        { "id": "b", "latex": "\\frac{3}{x^{4}}", "correct": false, "diagnosis": "sign-lost-on-negative-exponent" },
+        { "id": "c", "latex": "-\\frac{3}{x^{2}}", "correct": false, "diagnosis": "exponent-increased-not-decreased" },
+        { "id": "d", "latex": "\\frac{1}{3x^{2}}", "correct": false, "diagnosis": "quotient-treated-termwise" }
+      ],
+      "fallbackHints": [
+        "You do not need the quotient rule here. Rewrite the fraction first.",
+        "Write 1/x^3 as x^-3, apply the power rule, then convert back to fraction form.",
+        "Worked example on a different question: 1/x^2 becomes x^-2; its derivative is -2x^-3, which is -2/x^3."
+      ]
+    },
+    {
+      "id": "L1-MT-001",
+      "tier": 2,
+      "type": "mcq",
+      "isMiniTest": true,
+      "prompt": "What is the derivative of 2x^5?",
+      "promptLatex": "\\frac{d}{dx}\\left(2x^{5}\\right)",
+      "options": [
+        { "id": "a", "latex": "10x^{4}", "correct": true },
+        { "id": "b", "latex": "2x^{4}", "correct": false, "diagnosis": "exponent-not-multiplied-into-coefficient" },
+        { "id": "c", "latex": "10x^{5}", "correct": false, "diagnosis": "coefficient-applied-power-not-reduced" },
+        { "id": "d", "latex": "5x^{4}", "correct": false, "diagnosis": "original-coefficient-dropped" }
+      ],
+      "fallbackHints": [
+        "Both the coefficient and the exponent change here.",
+        "Multiply 2 by the exponent, then reduce the exponent by one.",
+        "Worked example on a different question: for 3x^6, multiply 3 by 6 to get 18 and reduce 6 to 5, giving 18x^5."
+      ]
+    },
+    {
+      "id": "L1-MT-002",
+      "tier": 3,
+      "type": "symbolic",
+      "isMiniTest": true,
+      "prompt": "Differentiate x^(1/3)",
+      "promptLatex": "\\frac{d}{dx}\\left(x^{1/3}\\right)",
+      "answer": { "latex": "\\frac{1}{3}x^{-2/3}", "expression": "(1/3)*x^(-2/3)" },
+      "fallbackHints": [
+        "The procedure is the same for fractional exponents as for whole ones.",
+        "Bring the fraction down to the front, then subtract one from it.",
+        "Worked example on a different question: for x^(1/2), bring down 1/2 and reduce the exponent to -1/2, giving (1/2)x^(-1/2)."
+      ]
+    },
+    {
+      "id": "L1-MT-003",
+      "tier": 2,
+      "type": "symbolic",
+      "isMiniTest": true,
+      "prompt": "Differentiate 3x^2 - x + 9",
+      "promptLatex": "\\frac{d}{dx}\\left(3x^{2} - x + 9\\right)",
+      "answer": { "latex": "6x - 1", "expression": "6*x - 1" },
+      "fallbackHints": [
+        "Handle each of the three terms on its own.",
+        "Remember that a lone x has an exponent of 1, and that a constant contributes nothing.",
+        "Worked example on a different question: for 5x^2 + x - 2, the terms give 10x, then 1, then 0."
+      ]
+    }
+  ]
+}
