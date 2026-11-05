@@ -92,11 +92,22 @@ design documents and wireframes, so that I can test it and record the video demo
 - README.md status table updated.
 
 ### How I Used It
-[TO COMPLETE BEFORE COMMITTING: what you ran, what you checked, what you changed.]
+I installed the project on my laptop, ran it with `npm run dev`, and played the L0
+tutorial and the full L1 level in Chrome myself. I deliberately tested a wrong answer,
+the hint pop-up, a typed answer, the mini-test and the results screen. I ran both test
+suites (`symbolic.test.js`: 28/28, `session.test.js`: 32/32).
 
 ### Decisions I made myself
-[TO COMPLETE: e.g. which rules or screens you changed after testing.]
+- Asked for a pixel-art game style for the interface, while keeping the maths and
+  hint text in a normal readable font.
+- Kept the game rules from my own design documents (hearts, XP, hint XP cap, tier
+  rules, mini-test pass mark).
+- Since GEAP has not been confirmed, decided to host the site on an available
+  platform for now and to inform my supervisor.
+- Decided the user study will focus mainly on enjoyment and usability, with a short
+  pre- and post-test kept to measure learning.
 
 ### Verification
-[TO COMPLETE: e.g. ran both test suites, played L0 and L1 end to end, checked all
-feedback messages for mathematical correctness.]
+All code was run on my own machine before committing. Both test suites passed, and I
+completed L0 and L1 end to end without errors. The mathematics in the L1 question bank
+was checked by hand in the 8 October session and is unchanged.
