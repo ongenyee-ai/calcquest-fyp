@@ -1,0 +1,36 @@
+# Output of: node spike-cas.mjs  (mathjs 15.2.0, re-run 5 Nov 2026)
+
+CAS equivalence spike — CalcQuest
+
+topic case                          expect  symbolic  numeric
+------------------------------------------------------------------------
+L1    reordered terms               same    same  ok  same  ok 
+L1    factored form                 same    differ FAILsame  ok 
+L1    explicit multiplication       same    same  ok  same  ok 
+L1    dropped the x                 differ  differ  ok differ  ok 
+L1    constant not vanished         differ  differ  ok differ  ok 
+L1    root as neg. power            same    differ FAILsame  ok 
+L1    fraction coefficient          same    differ FAILsame  ok 
+L1    cube root derivative          same    same  ok  same  ok 
+L1    neg. power as fraction        same    same  ok  same  ok 
+L1    sign lost                     differ  differ  ok differ  ok 
+L2    product rule reordered        same    same  ok  same  ok 
+L2    product rule expanded         same    same  ok  same  ok 
+L3    quotient unsimplified         same    same  ok  same  ok 
+L4    chain rule                    same    same  ok  same  ok 
+L4    chain rule, no inner          differ  differ  ok differ  ok 
+raw   student typed "6x-1"          same    same  ok  same  ok 
+raw   student typed "2x^5"          same    same  ok  same  ok 
+hard  trig identity                 same    differ FAILsame  ok 
+------------------------------------------------------------------------
+symbolic: 14/18 correct
+numeric:  18/18 correct
+
+symbolic failed on:
+  L1 factored form
+  L1 root as neg. power
+  L1 fraction coefficient
+  hard trig identity
+
+No wrong answer was accepted by either method.
+

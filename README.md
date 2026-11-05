@@ -36,13 +36,15 @@ than spread thinly across a syllabus.
 | Design docs, skill tree, learning objectives, AI strategy | Complete |
 | UI wireframes | Complete (low-fidelity) |
 | L1 Power Rule question bank | Complete (11 questions) |
-| Playable L1 prototype | In progress |
-| Symbolic answer checking (CAS) | Not started |
-| LLM hint integration | Not started |
-| Persistence and analytics | Not started |
+| L2–L5 question banks | Not started (shown as "coming soon" on the map) |
+| Symbolic answer checking (CAS) | Complete — 28/28 tests (`docs/findings/`) |
+| Playable prototype: L0 tutorial + L1 game loop | Draft complete — menu, level map, MCQ and typed answers, hearts, XP, streak, stars, mini-test |
+| Hints | Static three-level hints working; LLM not connected yet (`src/hints/hintProvider.js`) |
+| Adaptive difficulty | Complete (deterministic tier rules, `src/game/adaptive.js`) |
+| Persistence and analytics | Browser-only (localStorage) progress and event log, downloadable as JSON |
 | GEAP deployment | Blocked — awaiting confirmation of deployment unit |
 
-Tracked against `docs/CalcQuest_Gantt.xlsx`.
+Tracked against `CalcQuest_Gantt.xlsx`.
 
 ## The skill tree
 
@@ -94,9 +96,13 @@ docs/                      design and planning documents
   wireframes/              hand-drawn low-fidelity screens
 src/                       application source
   data/questions/          question bank, one JSON file per node
-  components/              UI components
-  game/                    state machine, scoring, adaptive difficulty
-  checking/                answer checking
+  data/nodes.js            the six skill-tree nodes and unlock rules
+  data/diagnoses.js        feedback text for each diagnostic distractor tag
+  components/              UI screens (menu, map, tutorial, play, hints, results)
+  game/                    session state machine, scoring, adaptive rules, saved progress
+  checking/                answer checking (MCQ and symbolic)
+  hints/                   hint provider: static now, LLM later
+  analytics/               usage event log for the evaluation
 ```
 
 ## Running it locally
@@ -111,6 +117,19 @@ npm run dev
 ```
 
 The dev server prints a `http://localhost:5173` URL.
+
+## Running the tests
+
+```bash
+node src/checking/symbolic.test.js   # answer checker, 28 cases
+node src/game/session.test.js        # game loop, scoring, streak, question bank checks
+```
+
+## Collecting usage data
+
+Every question shown, answer submitted, hint viewed and level finished is logged in the
+browser with an anonymous participant id. On the main menu, open **Researcher tools** to
+download the log as JSON or reset progress between test sessions.
 
 ## Question bank format
 

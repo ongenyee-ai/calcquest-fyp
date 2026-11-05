@@ -1,122 +1,78 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import MainMenu from './components/MainMenu.jsx';
+import LevelMap from './components/LevelMap.jsx';
+import Tutorial from './components/Tutorial.jsx';
+import PlayScreen from './components/PlayScreen.jsx';
+import Results from './components/Results.jsx';
+import { displayedStreak, loadProgress, recordNodeComplete, resetProgress, saveProgress } from './game/progress.js';
+import { clearEvents, logEvent } from './analytics/log.js';
 
-function App() {
-  const [count, setCount] = useState(0)
+/**
+ * Top-level screen switching. Screens: menu -> map -> tutorial | play -> results.
+ * No router library: four screens do not need one yet.
+ */
+export default function App() {
+  const [progress, setProgress] = useState(loadProgress);
+  const [screen, setScreen] = useState({ name: 'menu' });
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>CalcQuest</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+  function updateProgress(next) {
+    setProgress(next);
+    saveProgress(next);
+  }
 
-      <div className="ticks"></div>
+  function openNode(node) {
+    logEvent('node_opened', { node: node.id });
+    setScreen({ name: node.kind === 'tutorial' ? 'tutorial' : 'play', node, key: Date.now() });
+  }
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+  const streak = displayedStreak(progress.streak);
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+  switch (screen.name) {
+    case 'map':
+      return <LevelMap progress={progress} onBack={() => setScreen({ name: 'menu' })} onOpenNode={openNode} />;
+
+    case 'tutorial':
+      return (
+        <Tutorial
+          onBack={() => setScreen({ name: 'map' })}
+          onComplete={() => {
+            logEvent('tutorial_completed', { node: screen.node.id });
+            updateProgress(recordNodeComplete(progress, screen.node.id));
+            setScreen({ name: 'map' });
+          }}
+        />
+      );
+
+    case 'play':
+      return (
+        <PlayScreen
+          key={screen.key}
+          node={screen.node}
+          onExit={() => {
+            logEvent('node_left', { node: screen.node.id });
+            setScreen({ name: 'map' });
+          }}
+          onPassed={result => {
+            updateProgress(recordNodeComplete(progress, screen.node.id, result));
+            setScreen({ name: 'results', node: screen.node, result });
+          }}
+        />
+      );
+
+    case 'results':
+      return <Results node={screen.node} result={screen.result} streak={streak} onContinue={() => setScreen({ name: 'map' })} />;
+
+    default:
+      return (
+        <MainMenu
+          streak={streak}
+          totalXp={progress.totalXp}
+          onPlay={() => setScreen({ name: 'map' })}
+          onReset={() => {
+            clearEvents();
+            setProgress(resetProgress());
+          }}
+        />
+      );
+  }
 }
-
-export default App

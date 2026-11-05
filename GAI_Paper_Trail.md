@@ -72,3 +72,31 @@ to confirm 28/28.
 ### Verification
 All mathematics in the question bank checked by hand. All code executed and
 its output inspected. No output was accepted without being run.
+## 5 November 2026
+
+### Prompt / Assistance Used
+Asked an AI assistant (Claude) to build a working draft of the Semester 1 demo from my
+design documents and wireframes, so that I can test it and record the video demo.
+
+### Output Used
+- src/game/ (session.js, adaptive.js, scoring.js, progress.js): AI-written game loop
+  implementing the rules already set in docs/skill_tree.md and docs/ai_strategy.md
+  (hearts, XP, hint XP cap, 3-in-a-row tier up, 2-wrong tier down + hint, mini-test).
+- src/components/: AI-written screens following my wireframes 1–6 (main menu, level map,
+  MCQ and symbolic question screens, hint pop-up, results) and an L0 tutorial.
+- src/checking/mcq.js, src/hints/hintProvider.js, src/analytics/log.js,
+  src/data/nodes.js, src/data/diagnoses.js: AI-written supporting modules. The feedback
+  text in diagnoses.js was AI-drafted from my distractor tags.
+- src/game/session.test.js: AI-written test suite (32 checks).
+- docs/findings/: re-run outputs of spike-cas.mjs and symbolic.test.js.
+- README.md status table updated.
+
+### How I Used It
+[TO COMPLETE BEFORE COMMITTING: what you ran, what you checked, what you changed.]
+
+### Decisions I made myself
+[TO COMPLETE: e.g. which rules or screens you changed after testing.]
+
+### Verification
+[TO COMPLETE: e.g. ran both test suites, played L0 and L1 end to end, checked all
+feedback messages for mathematical correctness.]

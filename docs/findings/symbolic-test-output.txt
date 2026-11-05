@@ -1,0 +1,45 @@
+# Output of: node src/checking/symbolic.test.js  (re-run 5 Nov 2026)
+
+symbolic answer checker
+
+input                 expected     actual       via       case
+----------------------------------------------------------------------------------------
+4x^3 - 6x             correct      correct      symbolic  exact form
+-6x + 4x^3            correct      correct      symbolic  terms reordered
+2x(2x^2 - 3)          correct      correct      numeric   factored
+4*x^3 - 6*x           correct      correct      symbolic  explicit multiplication
+4x³ - 6x              correct      correct      symbolic  superscript typed
+4x^3 − 6x             correct      correct      symbolic  unicode minus
+dy/dx = 4x^3 - 6x     correct      correct      symbolic  restated the question
+4x^3 - 6              incorrect    incorrect    numeric   dropped the x
+4x^3 - 6x + 6         incorrect    incorrect    numeric   constant did not vanish
+4x^2 - 6x             incorrect    incorrect    numeric   exponent not reduced
+12x^2 - 6x            incorrect    incorrect    numeric   differentiated twice
+1/(2sqrt(x))          correct      correct      symbolic  exact form
+0.5x^(-1/2)           correct      correct      numeric   decimal coefficient
+(1/2)x^(-1/2)         correct      correct      numeric   fraction coefficient
+1/(2√x)               correct      correct      symbolic  root glyph typed
+1/sqrt(x)             incorrect    incorrect    numeric   missing the 2
+-3/x^4                correct      correct      symbolic  written as a fraction
+3/x^4                 incorrect    incorrect    numeric   sign lost
+-3x^(-3)              incorrect    incorrect    numeric   exponent increased
+x*cos(x) + sin(x)     correct      correct      symbolic  product rule reordered
+cos(x^2)*2x           correct      correct      symbolic  chain rule reordered
+cos(x^2)              incorrect    incorrect    numeric   inner derivative missing
+0                     correct      correct      symbolic  zero
+5                     incorrect    incorrect    numeric   constant not differentiated
+4x^3 -                unreadable   unreadable   —         trailing operator
+((4x^3 - 6x           unreadable   unreadable   —         unbalanced bracket
+(empty)               unreadable   unreadable   —         empty
+i dont know           unreadable   unreadable   —         prose
+----------------------------------------------------------------------------------------
+28/28 passed
+
+No wrong answer was accepted as correct.
+
+normaliser:
+  4x³ − 6x             →  4x^(3) - 6x
+  1/(2√x)              →  1/(2sqrt(x))
+  dy/dx = 6x - 1       →  6x - 1
+  2 × x ÷ 3            →  2 * x / 3
+
